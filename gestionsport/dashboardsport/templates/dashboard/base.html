@@ -1,0 +1,76 @@
+{% load static %}
+{% load bootstrap4 %}
+
+<!DOCTYPE html>
+<html>
+  <head>
+    {% bootstrap_css %}
+    {% bootstrap_javascript jquery='full' %}
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>{% block titulo %} INICIO {% endblock %}</title>
+    <link rel="stylesheet" href="{%static 'dashboard/estilo.css' %}">
+    <link rel="stylesheet" href="{%static 'dashboard/modificaciones.css' %}">
+    
+
+  </head>
+  <body>
+
+<div class="principal">
+    <div class="contenedor">
+        <div class="nav">
+            <div class="logo">
+                <p>SPORT DANCE</p>
+            </div>
+            <div class="conjunto">
+                <div class="inicio">
+                    <a href="{%url 'index'%}"><p>INICIO</p></a>
+                </div>
+                <div class="agregar">
+                    <a href="{%url 'agregar'%}"><p>AGREGAR SOCIO</p></a>
+                </div>
+                <div class="clientes">
+                    <a href="{%url 'clientes'%}"><p>SOCIOS</p></a>
+                </div>
+                <div class="consultas">
+                    <a href="{%url 'consulta'%}"><p>CONSULTA</p></a>
+                </div>
+                <div class="estadisticas">
+                    <a href="{%url 'estadisticas'%}"><p>ESTADISTICAS</p></a>
+                </div>
+                <div class="fecha_hoy">
+                    <a href="#"><p>{{fecha_hoy}}</p></a>
+                </div>
+            </div>    
+        </div>
+        <div class="cuerpo">
+            {% block tituloconsulta %}
+            {% endblock tituloconsulta %}
+
+            {% block  content%}
+ 
+            {% endblock  %} 
+
+            {% block barra_busqueda %}
+            
+            {% endblock barra_busqueda %}
+
+            {% block resultado %}
+            {%endblock resultado%}
+
+            {% block envio  %}
+    
+            {% endblock envio %}
+
+            {% block estadistica %}
+    
+            {% endblock estadistica %}
+
+            
+            
+        </div>    
+    </div>
+</div>   
+
+</body>
+</html>

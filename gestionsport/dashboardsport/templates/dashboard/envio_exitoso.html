@@ -1,0 +1,19 @@
+{% extends 'dashboard/base.html' %}
+{% load static %}
+
+{% block titulo %} ENVIO EXITOSO {% endblock %}
+
+{% block envio  %}
+    <div class="exito">
+        <h3>El cliente se agrego correctamente!!</h3>
+        <p>Desea agregar otro socio...?</p>
+        <form class>
+            <a href="{% url 'agregar' %}">
+                <input class="boton_agregar" type="button" value="Cargar otro usuario">
+            </a>
+        </form>       
+    </div>
+    
+{% endblock envio %}
+
+

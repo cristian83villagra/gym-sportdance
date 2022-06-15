@@ -1,0 +1,117 @@
+{% extends 'dashboard/base.html' %}
+
+{% block titulo %} ESTADISTICAS {% endblock %}
+
+{% block estadistica %}
+    <div class="conestadistica">
+        <div class="cabecera">
+            <div class="tituloesta">ESTADISTICAS</div>
+            <div class="tarjetas">
+                
+                <div class="tarjeta1">
+                    <div class="titulotarjeta">Dia</div>
+                    <div class="canthoy"><h5>{{registro_diario}}</h5> </div>
+                </div>
+                <div class="tarjeta2">
+                    <div class="titulotarjeta">Mes</div>
+                    <div class="cantmes"><h5>{{registro_mensual}}</h5> </div>
+                </div>
+                <div class="tarjeta3">
+                    <div class="titulotarjeta">Año</div>
+                    <div class="cantanio"><h5>{{registros_anual}}</h5></div>
+                </div>
+                <div class="tarjeta4">
+                    <div class="titulotarjeta">Activos</div>
+                    <div class="activos"><h5>{{activos}}</h5></div>
+                </div>
+                <div class="tarjeta5">
+                    <div class="titulotarjeta">No Activos</div>
+                    <div class="inactivos"><h5>{{no_activos}}</h5></div>
+                </div>
+                
+            </div>
+        </div>
+        
+        <div class="cuerpoestadistica">
+            <div class="tabla">
+                <div class="Tabla_estadistica">
+                    <div class="tituloestadistica">
+                        SPORTDANCE GYM
+                    </div>
+                    <table class="table table-dark table-hover">
+                        <thead>
+                        <tr class=""></tr>
+                            <th scope="col" >MES</th>
+                            <th scope="col">SOCIOS INGRESADOS</th>
+                            <th scope="col">INGRESO MENSUAL</th>
+                              
+                        </tr>
+                        </thead>
+                        
+                        <tbody>
+                            
+                                <tr> 
+                                    <th scope="row">Junio</th>
+                                    <td>{{registro_junio}}</td>
+                                    <td>$ {{junio}}</td>
+                                </tr>
+                                <tr>
+                                    <th scope="row">Julio</th>
+                                    <td>{{registro_julio}}</td>
+                                    <td>$ {{julio}}</td>
+                                </tr>
+                                <tr>
+                                    <th scope="row">Agosto</th>
+                                    <td>{{registro_agosto}}</td>
+                                    <td>$ {{agosto}}</td>
+                                </tr>
+                                <tr>
+                                    <th scope="row">Septiembre</th>
+                                    <td>{{registro_septiembre}}</td>
+                                    <td>$ {{septiembre}}</td>
+                                </tr>
+                                <tr>
+                                    <th scope="row">Octubre</th>
+                                    <td>{{registro_octubre}}</td>
+                                    <td>$ {{octubre}}</td>
+                                </tr>
+                                <tr>
+                                    <th scope="row">Noviembre</th>
+                                    <td>{{registro_noviembre}}</td>
+                                    <td>$ {{noviembre}}</td>
+                                </tr>
+                                <tr>
+                                    <th scope="row">Diciembre</th>
+                                    <td>{{registro_diciembre}}</td>
+                                    <td>$ {{diciembre}}</td>
+                                </tr>
+                            
+                    </table>
+                </div>
+            </div>
+            <div class="totales">
+                <div class="titulototales">
+                    <h5>TOTALES</h5>
+                </div>
+                <div class="sociostotalanio">
+                    <div class="titutotalsocio">Registro Anual</div>
+                    <div class="cant_registros">
+                        {{registros_anual}}
+                    </div>
+                    
+                </div>
+                <div class="ingresototalanio">
+                    <div class="tituingresototal">Ingreso Anual</div>
+                    <div class="cant_ingresos">
+                        $ {{anual}}
+                    </div>
+                </div>
+                
+                
+            </div>
+
+        </div>
+    </div>
+    
+
+{% endblock estadistica %}
