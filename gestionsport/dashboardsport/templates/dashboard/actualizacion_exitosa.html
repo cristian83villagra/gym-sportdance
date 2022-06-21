@@ -1,0 +1,17 @@
+{% extends 'dashboard/base.html' %}
+{% load static %}
+
+{% block titulo %} ECTUALIZACION EXITOSA {% endblock %}
+
+{% block envio  %}
+    <div class="exito">
+        <h3>El cliente se actualizo correctamente!!</h3>
+        <p>Desea actualizar otro socio...?</p>
+        <form class>
+            <a href="{% url 'consulta' %}">
+                <input class="boton_agregar" type="button" value="actualizar otro usuario">
+            </a>
+        </form>       
+    </div>
+    
+{% endblock envio %}

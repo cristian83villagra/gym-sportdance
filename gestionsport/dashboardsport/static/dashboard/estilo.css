@@ -364,7 +364,7 @@ label{
     color: antiquewhite;
     border: none;
     width: 10em;
-    height: 2em;
+    height: 2.1em;
     transition: border-radius 1s;
 }
 
@@ -488,7 +488,16 @@ label{
     width: 100%;
     height: 50%;
     font-size: 1.2em;
+    
+    
 }
+
+.titulotarjeta a{
+    text-decoration: none;
+    color: rgb(50, 50, 50);
+}
+
+
 
 .canthoy{
     display: flex;
@@ -579,7 +588,17 @@ label{
     height: 15vh;
     border-radius: 10%;
     box-shadow: 3px 2px 8px 2px #b0b0b0;
+    cursor: pointer;
 }
+
+.tarjeta5:hover{
+    width: 110px;
+    height: 17vh;
+    transition: ease-in-out;
+    transition-duration: 0.5s;
+    color: #e7e7e7;
+}
+
 
 
 
@@ -734,4 +753,30 @@ label{
 
 .lista h2{
     color: #fc0404;
+}
+
+
+/*------------PAGINA NO ACTIVOS--------------*/
+.contenido_eliminar_socio{
+    width: 100%;
+    height: 100%;
+    display: flex;
+    flex-basis: auto;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+.eliminar_socio{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    width: 400px;
+    height: 500px;
+    color: #e8e8e8;
+}
+
+.eliminar_socio a{
+    margin: 1em;
 }

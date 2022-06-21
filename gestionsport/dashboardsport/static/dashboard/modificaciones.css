@@ -37,5 +37,18 @@
     background: violet;
 }
 
+/*----------PAGINA CONSULTA---------*/
+
+a:link {text-decoration: none !important;}
+a:visited {text-decoration: none!important;}
+a:hover {text-decoration: none !important;
+        color:#e8e8e8}
+a:active {text-decoration: none !important;}
+a{
+    color: #e8e8e8;
+    font-weight: 600;
+}
+
+
 
             

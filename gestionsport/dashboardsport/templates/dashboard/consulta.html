@@ -18,7 +18,8 @@
             <input type="text" class="form-control"
             placeholder="Ingrese su consulta" name="buscar" value="{{request.GET.buscar}}">
         </div><br>
-        <button type="submit" class="btn btn-light">Consultar cliente</button>
+        <button type="submit" class="btn btn-light">Consultar Socio</button>
+        
     </form>
 
 {% endblock barra_busqueda  %}
@@ -42,18 +43,21 @@
                 </thead>
                 <tbody>
                     {% for cliente in clientes %}
-                    <tr>
-                        <th scope="row">{{cliente.id}}</th>
-                        <td>{{cliente.nombre}}</td>
-                        <td>{{cliente.apellido}}</td>
-                        <td>{{cliente.inicio}}</td>
-                        <td>{{cliente.vencimiento}}</td>
-                        <td>{{cliente.cuota}}</td>
-                        <td class="estado">{{cliente.estado}}</td>
-                    </tr>
+                        <tr>
+                            <th scope="row">{{cliente.id}}</th>
+                            <td>{{cliente.nombre}}</td>
+                            <td>{{cliente.apellido}}</td>
+                            <td>{{cliente.inicio}}</td>
+                            <td>{{cliente.vencimiento}}</td>
+                            <td>{{cliente.cuota}}</td>
+                            <td class="estado">{{cliente.estado}}</td>
+                            <td><button type="submit" class="btn btn-warning"><a id="link_actualizar" href="{%url 'actualizar_socio' cliente.id %}">Actualizar Socio</a> </button></td>
+                            <td><button type="submit" class="btn btn-danger"><a href="{%url 'eliminar_socio' cliente.id %}">Eliminar Socio</a> </button></td>
+                        </tr>
+                    {% endfor %}
             </table>
             </div>
-                {% endfor %}
+                
         {% else %}
             <div class="respuesta"><h2>Tu busqueda no encontro al cliente</h2></div>
         {% endif %} 

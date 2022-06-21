@@ -59,7 +59,7 @@ class Socio(models.Model):
     
     
     def __str__(self):
-        return "{} ({}) ({})".format(self.id, self.nombre, self.genero)
+        return self.nombre
     
     class Meta:
         db_table = 'socio'

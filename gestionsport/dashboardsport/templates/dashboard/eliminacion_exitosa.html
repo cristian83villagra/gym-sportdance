@@ -1,0 +1,17 @@
+{% extends 'dashboard/base.html' %}
+{% load static %}
+
+{% block titulo %} ELIMINACION EXITOSA {% endblock %}
+
+{% block envio  %}
+    <div class="exito">
+        <h3>El socio fue eliminado correctamente!!</h3>
+        <p>Desea eliminar otro socio...?</p>
+        <form class>
+            <a href="{% url 'consulta' %}">
+                <input class="boton_agregar" type="button" value="eliminar otro socio">
+            </a>
+        </form>       
+    </div>
+    
+{% endblock envio %}

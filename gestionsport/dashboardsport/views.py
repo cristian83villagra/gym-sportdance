@@ -1,9 +1,6 @@
 from calendar import month
-from itertools import count
-from pickle import TRUE
-from tkinter import S
-from typing_extensions import Self
-from webbrowser import get
+from django.urls import reverse_lazy
+from django.views.generic.edit import CreateView, UpdateView
 from django.db.models import Sum
 from django.shortcuts import render, redirect
 from .models import Socio
@@ -11,6 +8,8 @@ from django.db.models import Q, F
 from .forms import Form_Client
 from datetime import datetime, date
 from django.core.paginator import Paginator, EmptyPage, PageNotAnInteger
+from django.db import transaction
+
 
 
 #-------------VISTA INDEX---------------#
@@ -56,6 +55,56 @@ def envio_exitoso(request):
     return render(request, 'dashboard/envio_exitoso.html',{})
 
 
+#-------------VISTA ACTUALIZAR USUARIO---------------#
+
+def actualizar_socio(request, pk):
+    """
+    Funcion para actualizar socio
+    """
+    fecha_hoy = date.today()
+    socio = Socio.objects.get(id=pk)
+    form = Form_Client(instance=socio)
+    if request.method == 'POST':
+        form = Form_Client(request.POST, instance=socio)
+        if form.is_valid():
+            form.save()
+            return redirect("actualizacion_exitosa")
+    
+    return render(request, 'dashboard/actualizar_socio.html',{'form': form, 'fecha_hoy': fecha_hoy})
+
+#-------------VISTA ACTUALIZACION EXITOSA---------------#
+
+def actualizacion_exitosa(request):
+    """
+    Funcion que actualiza a socio
+    """
+    return render(request, 'dashboard/actualizacion_exitosa.html',{})
+
+
+
+#-------------VISTA ELIMINAR USUARIO---------------#
+
+def eliminar_socio(request, pk):
+    """
+    Funcion para actualizar socio
+    """
+    fecha_hoy = date.today()
+    socio = Socio.objects.get(id=pk)
+    if request.method == 'POST':
+        socio.delete()
+        return redirect("eliminacion_exitosa")
+    context = {'item': socio, 'fecha_hoy': fecha_hoy}
+    return render(request, 'dashboard/eliminar_socio.html',context)
+
+
+#-------------VISTA ELIMINACION EXITOSA---------------#
+
+def eliminacion_exitosa(request):
+    """
+    Funcion que lleva a una pagina de eliminacion exitosa
+    """
+    return render(request, 'dashboard/eliminacion_exitosa.html',{})
+
 
 #-------------VISTA LISTA DE CLIENTES DEL GYM---------------#
 
@@ -80,10 +129,10 @@ def no_activos(request):
     """
     Funcion actualiza los activos a no activos al terminar su mes de membresia.
     """
-    hoy = datetime.today()
-    vencidos = Socio.objects.filter(vencimiento = hoy)
-    print(vencidos)
-    vencidos = Socio.objects.filter(vencimiento = hoy).update(estado = 'No activo', aldia= 'NO', cuota=0)
+    hoy = date.today()
+    #vencidos = Socio.objects.filter(estado = 'No activo')
+    #print(vencidos)
+    vencidos = Socio.objects.filter(vencimiento__lte = hoy).update(estado = 'No activo', aldia= 'NO', cuota=0000.00)
         
     return render(request, 'dashboard/no_activos.html', {'vencidos': vencidos} )
     
@@ -100,14 +149,15 @@ def consulta(request):
     clientes = Socio.objects.filter(estado = True)
     if queryset:
         clientes = Socio.objects.filter(
-            Q(id__icontains = queryset) |
+            Q(id__exact = queryset) |
             Q(nombre__icontains = queryset)
         ).distinct()
+        print(clientes)
     return render(request, 'dashboard/consulta.html', {'clientes': clientes, 'fecha_hoy':fecha_hoy})
 
 
 
-#-------------VISTA ESTADISTICAS A CONSTRUIR---------------#
+#-------------VISTA ESTADISTICAS---------------#
 
 """
     Formulario para construir la vista de dashboard en construccion
@@ -228,5 +278,23 @@ def estadisticas(request):
                    'anual': anual, 'fecha_hoy': fecha_hoy})
                 
 
+#-------------VISTA SOCIOS NO ACTIVOS---------------#
 
+def socios_no_activos(request):
+    """
+    Funcion actualiza los activos a no activos al terminar su mes de membresia.
+    """
+    hoy = date.today()
+    vencido = Socio.objects.filter(vencimiento__lte = hoy)
+    
+    print(vencido)
+    #lista_vencidos= []
+    with transaction.atomic():    
+        for key in vencido:
+            print(key)
+            Socio.objects.filter(vencimiento__lte = hoy).update(estado = 'No activo', aldia= 'NO', cuota = 0000.00)
+    paginator = Paginator(vencido, 8) # 8 socios no activos en cada pagina
+    page = request.GET.get('page')
+    pagina_actual = paginator.get_page(page)
+    return render(request, 'dashboard/socios_no_activos.html', {'vencido': pagina_actual, 'hoy': hoy} )
 

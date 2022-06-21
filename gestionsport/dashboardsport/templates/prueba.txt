@@ -1,0 +1,26 @@
+{% for vencidos in vencidos %}
+            <tr>
+                
+                <th scope="row">{{cliente.id}}</th>
+                <td>{{cliente.nombre}}</td>
+                <td>{{cliente.apellido}}</td>
+                <td>{{cliente.inicio}}</td>
+                <td>{{cliente.vencimiento}}</td>
+                <td>{{cliente.cuota}}</td>
+                <td class="estado">{{cliente.estado}}</td>
+            </tr>
+            {% endfor %}
+
+
+
+
+
+<div class="control">
+        
+    {% if clientes.has_previous %}
+        <div class="previo"><a href="?page={{clientes.previous_page_number}}">Anterior</a></div>
+    {% endif%} 
+    {% if clientes.has_next %}
+        <div class="siguente"><a href="?page={{clientes.next_page_number}}">Siguiente</a></div>
+    {% endif%} 
+</div>

@@ -1,0 +1,19 @@
+{% extends 'dashboard/base.html' %}
+{% load static %}
+
+{% block eliminar_socio %}
+    
+    <div class="contenido_eliminar_socio">
+        <div class="eliminar_socio">
+            <p>Esta seguro de eliminar al socio {{item}} ?</p>
+
+            <form action="{%url 'eliminar_socio' item.id %}" method="POST">
+                {% csrf_token %}
+                <a style="color: #e8e8e8;" class="btn btn-warning" href="{%url 'index' %}">Cancelar</a>
+                <button type="summit" class="btn btn-danger">Eliminar Socio</button>
+            </form>
+        </div>
+        
+    </div>        
+
+{% endblock eliminar_socio %}
