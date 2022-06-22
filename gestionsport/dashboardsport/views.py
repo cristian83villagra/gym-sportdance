@@ -23,7 +23,7 @@ def index(request):
 
 
 
-#-------------VISTA VISTA AGREGAR SOCIOS---------------#
+#-------------VISTA AGREGAR SOCIOS---------------#
 
 """
 Esta funcion es para agregar nuevos socios mediante un formulario y ser cargados en la base de datos
@@ -55,6 +55,7 @@ def envio_exitoso(request):
     return render(request, 'dashboard/envio_exitoso.html',{})
 
 
+
 #-------------VISTA ACTUALIZAR USUARIO---------------#
 
 def actualizar_socio(request, pk):
@@ -71,6 +72,8 @@ def actualizar_socio(request, pk):
             return redirect("actualizacion_exitosa")
     
     return render(request, 'dashboard/actualizar_socio.html',{'form': form, 'fecha_hoy': fecha_hoy})
+
+
 
 #-------------VISTA ACTUALIZACION EXITOSA---------------#
 
@@ -149,7 +152,7 @@ def consulta(request):
     clientes = Socio.objects.filter(estado = True)
     if queryset:
         clientes = Socio.objects.filter(
-            Q(id__exact = queryset) |
+            Q(id__icontains = queryset) |
             Q(nombre__icontains = queryset)
         ).distinct()
         print(clientes)
